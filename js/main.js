@@ -11,24 +11,30 @@ $(document).ready(function () {
 
      // INIZIALIZZAZIONE CALENDARIO
      var dataIniziale = moment('2018-01-01');
+     console.log(dataIniziale);
      stampaGiorniMese(dataIniziale);
      stampaFestivi();
      //CLICK SU MESE SUCCESSIVO
      $('.mese-successivo').click(function () {
-          mese = mese + 1 ;
-          $('#calendar').empty();
-          dataIniziale.add(1, 'M');
-          stampaGiorniMese(dataIniziale);
-          stampaFestivi();
-          console.log(mese);
+          if(mese != 11 ) {
+               mese = mese + 1 ;
+               $('#calendar').empty();
+               dataIniziale.add(1, 'M');
+               stampaGiorniMese(dataIniziale);
+               stampaFestivi();
+               console.log(mese);
+          }
      });
      //CLICK SU MESE PRECEDENTE
      $('.mese-precedente').click(function () {
-          mese = mese - 1 ;
-          $('#calendar').empty();
-          dataIniziale.subtract(1, 'M');
-          stampaGiorniMese(dataIniziale);
-          stampaFestivi();
+          if(mese != 0 ) {
+               mese = mese - 1 ;
+               $('#calendar').empty();
+               dataIniziale.subtract(1, 'M');
+               stampaGiorniMese(dataIniziale);
+               stampaFestivi();
+          }
+
           console.log(mese);
      });
 
