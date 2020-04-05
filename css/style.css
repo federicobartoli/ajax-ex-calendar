@@ -1,0 +1,17 @@
+
+.top-calendar,
+.main-calendar{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+
+#calendar li,
+h1{
+     text-transform: capitalize;
+}
+
+.festivo {
+     color: red;
+}
