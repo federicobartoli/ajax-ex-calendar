@@ -7,7 +7,7 @@ $(document).ready(function () {
      //Dati presi da Moment
      // Stampare il mese di gennaio 2018
      // Tramite click stampare il mese successivo
-
+     var mese = 0 ;
 
      // INIZIALIZZAZIONE CALENDARIO
      var dataIniziale = moment('2018-01-01');
@@ -15,16 +15,21 @@ $(document).ready(function () {
      stampaFestivi();
      //CLICK SU MESE SUCCESSIVO
      $('.mese-successivo').click(function () {
+          mese = mese + 1 ;
           $('#calendar').empty();
           dataIniziale.add(1, 'M');
           stampaGiorniMese(dataIniziale);
-
+          stampaFestivi();
+          console.log(mese);
      });
      //CLICK SU MESE PRECEDENTE
      $('.mese-precedente').click(function () {
+          mese = mese - 1 ;
           $('#calendar').empty();
           dataIniziale.subtract(1, 'M');
           stampaGiorniMese(dataIniziale);
+          stampaFestivi();
+          console.log(mese);
      });
 
 
@@ -35,7 +40,7 @@ $(document).ready(function () {
                method: 'GET',
                data: {
                     year: 2018,
-                    month: 0
+                    month: mese
                },
                success: function (data) {
                     var giorniFestivi = data.response;
@@ -43,6 +48,7 @@ $(document).ready(function () {
                          var giornoFestivo = giorniFestivi[i];
                          var nomeFestivita = giornoFestivo.name;
                          var dataFestivo = giornoFestivo.date;
+                         console.log(nomeFestivita);
                          // console.log(nomeFestivita);
                          // console.log(dataFestivo);
                          $('#calendar li[data-day="'+ dataFestivo + '"]').addClass('festivo').append(' - ' + nomeFestivita)
